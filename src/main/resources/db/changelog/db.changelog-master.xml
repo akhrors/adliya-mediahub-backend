@@ -21,5 +21,6 @@
     <include file="db/changelog/v1/014-create-audit-logs.xml"/>
     <include file="db/changelog/v1/015-create-content-calendar.xml"/>
     <include file="db/changelog/v1/016-seed-roles.xml"/>
+    <include file="db/changelog/v1/017-seed-full-test-data.xml"/>
 
 </databaseChangeLog>
