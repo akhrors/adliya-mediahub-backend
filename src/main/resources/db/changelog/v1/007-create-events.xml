@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="007-create-events" author="adliya">
+
+        <createTable tableName="events">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomi" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="turi" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+                <!-- MATBUOT_ANJUMANI, BRIFING, OCHIQ_MULOQOT, OCHIQ_ESHIKLAR_KUNI,
+                     AKSIYA, SEMINAR, KONFERENSIYA, FORUM, IMIJ_TADBIRI,
+                     TARGʻIBOT, SAYYOR_QABUL, UCHRASHUV, DAVRA_SUHBAT, BOSHQA -->
+            </column>
+            <column name="tashkilotchi_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hudud" type="VARCHAR(100)"/>
+            <column name="sana" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="joy" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ishtirokchilar" type="TEXT"/>
+            <column name="kun_tartibi" type="TEXT"/>
+            <column name="press_reliz" type="TEXT"/>
+            <column name="foto_kerak" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="video_kerak" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="oav_taklif" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="masul_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="izoh" type="TEXT"/>
+            <column name="status" type="VARCHAR(30)" defaultValue="QORALAMA">
+                <constraints nullable="false"/>
+                <!-- QORALAMA, YUBORILDI, QABUL_QILINDI, QAYTARILDI, YAKUNLANDI -->
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="event_checklists">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!-- PRESS_RELIZ_TAYYORLANDI, FOTO_OLINDI, VIDEO_OLINDI, INTERVYU_OLINDI,
+                 TELEGRAM_POST, INSTAGRAM_POST, VEBSAYT, OAV_YUBORILDI, HAVOLA_KIRITILDI -->
+            <column name="is_done" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="done_at" type="TIMESTAMP"/>
+            <column name="done_by" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="events"
+                baseColumnNames="tashkilotchi_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_event_tashkilotchi"/>
+
+        <addForeignKeyConstraint
+                baseTableName="events"
+                baseColumnNames="masul_id"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_event_masul"/>
+
+        <addForeignKeyConstraint
+                baseTableName="events"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_event_creator"/>
+
+        <addForeignKeyConstraint
+                baseTableName="event_checklists"
+                baseColumnNames="event_id"
+                referencedTableName="events"
+                referencedColumnNames="id"
+                constraintName="fk_checklist_event"/>
+
+        <createIndex tableName="events" indexName="idx_events_status">
+            <column name="status"/>
+        </createIndex>
+
+        <createIndex tableName="events" indexName="idx_events_sana">
+            <column name="sana"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

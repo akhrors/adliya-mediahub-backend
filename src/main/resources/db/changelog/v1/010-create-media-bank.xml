@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="010-create-media-bank" author="adliya">
+
+        <createTable tableName="media_files">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="file_name" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="original_name" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_type" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+                <!-- FOTO, VIDEO, AUDIO, PRESS_RELIZ, INFOGRAFIKA, DIZAYN_MAKETI -->
+            </column>
+            <column name="mime_type" type="VARCHAR(100)"/>
+            <column name="file_size" type="BIGINT"/>
+            <column name="url" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tavsif" type="TEXT"/>
+            <column name="teglar" type="TEXT"/>
+            <!-- Comma-separated or JSON array of tags -->
+            <column name="hudud_id" type="BIGINT"/>
+            <column name="ruxsat_darajasi" type="VARCHAR(20)" defaultValue="ICHKI">
+                <constraints nullable="false"/>
+                <!-- ICHKI, OMMAVIY -->
+            </column>
+            <column name="related_module" type="VARCHAR(50)"/>
+            <!-- events, media_requests, monitoring_items, coverage_materials -->
+            <column name="related_id" type="BIGINT"/>
+            <column name="uploaded_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uploaded_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="media_files"
+                baseColumnNames="hudud_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_mediafile_org"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_files"
+                baseColumnNames="uploaded_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_mediafile_uploader"/>
+
+        <createIndex tableName="media_files" indexName="idx_media_file_type">
+            <column name="file_type"/>
+        </createIndex>
+
+        <createIndex tableName="media_files" indexName="idx_media_related">
+            <column name="related_module"/>
+            <column name="related_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

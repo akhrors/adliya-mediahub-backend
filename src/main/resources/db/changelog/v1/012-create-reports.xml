@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="012-create-reports" author="adliya">
+
+        <createTable tableName="reports">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomi" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hisobot_turi" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+                <!-- OAV_CHIQISHLARI, TADBIRLAR, FAOLIYATNI_YORITISH,
+                     TANQIDIY_MATERIALLAR, REYTING -->
+            </column>
+            <column name="davr_boshi" type="DATE"/>
+            <column name="davr_oxiri" type="DATE"/>
+            <column name="filtrlar" type="TEXT"/>
+            <!-- JSON: {"hudud": 1, "platforma": "TELEGRAM", "status": "TASDIQLANDI"} -->
+            <column name="format" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+                <!-- WORD, EXCEL, PDF -->
+            </column>
+            <column name="file_url" type="TEXT"/>
+            <column name="status" type="VARCHAR(20)" defaultValue="YARATILMOQDA">
+                <constraints nullable="false"/>
+                <!-- YARATILMOQDA, TAYYOR, XATO -->
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="reports"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_report_creator"/>
+    </changeSet>
+
+</databaseChangeLog>

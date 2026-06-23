@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <include file="db/changelog/v1/001-create-roles.xml"/>
+    <include file="db/changelog/v1/002-create-organizations.xml"/>
+    <include file="db/changelog/v1/003-create-users.xml"/>
+    <include file="db/changelog/v1/004-create-media-outlets.xml"/>
+    <include file="db/changelog/v1/005-create-expert-profiles.xml"/>
+    <include file="db/changelog/v1/006-create-media-requests.xml"/>
+    <include file="db/changelog/v1/007-create-events.xml"/>
+    <include file="db/changelog/v1/008-create-coverage-materials.xml"/>
+    <include file="db/changelog/v1/009-create-monitoring.xml"/>
+    <include file="db/changelog/v1/010-create-media-bank.xml"/>
+    <include file="db/changelog/v1/011-create-ratings.xml"/>
+    <include file="db/changelog/v1/012-create-reports.xml"/>
+    <include file="db/changelog/v1/013-create-notifications.xml"/>
+    <include file="db/changelog/v1/014-create-audit-logs.xml"/>
+    <include file="db/changelog/v1/015-create-content-calendar.xml"/>
+    <include file="db/changelog/v1/016-seed-roles.xml"/>
+    <include file="db/changelog/v1/017-seed-full-test-data.xml"/>
+
+</databaseChangeLog>

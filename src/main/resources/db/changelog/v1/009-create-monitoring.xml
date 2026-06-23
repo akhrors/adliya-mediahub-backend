@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="009-create-monitoring" author="adliya">
+
+        <!-- Tanqidiy materiallar -->
+        <createTable tableName="monitoring_items">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="turi" type="VARCHAR(30)" defaultValue="TANQIDIY">
+                <constraints nullable="false"/>
+                <!-- TANQIDIY, NHH (yangi normativ-huquqiy hujjat) -->
+            </column>
+            <column name="link" type="TEXT"/>
+            <column name="platforma" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+                <!-- TELEGRAM, FACEBOOK, INSTAGRAM, YOUTUBE, OAV, BOSHQA -->
+            </column>
+            <column name="muallif_manba" type="VARCHAR(255)"/>
+            <column name="mavzu" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hudud_tuzilma_id" type="BIGINT"/>
+            <column name="daraja" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+                <!-- PAST, ORTA, YUQORI, REZONANSLI -->
+            </column>
+            <column name="masul_org_id" type="BIGINT"/>
+            <column name="deadline" type="TIMESTAMP"/>
+            <column name="status" type="VARCHAR(30)" defaultValue="YANGI">
+                <constraints nullable="false"/>
+                <!-- YANGI, KO'RIB_CHIQILMOQDA, JAVOB_TAYYORLANDI, YAKUNLANDI, KECHIKDI -->
+            </column>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Munosabat (responses) -->
+        <createTable tableName="monitoring_responses">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="monitoring_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taqdim_qilingan_malumot" type="TEXT"/>
+            <column name="munosabat_matni" type="TEXT"/>
+            <column name="yakuniy_havola" type="TEXT"/>
+            <column name="fayl_url" type="TEXT"/>
+            <column name="status" type="VARCHAR(30)" defaultValue="TAYYORLANMOQDA">
+                <constraints nullable="false"/>
+                <!-- TAYYORLANMOQDA, KELISHUVDA, TASDIQLANDI, ELON_QILINDI -->
+            </column>
+            <column name="approved_by" type="BIGINT"/>
+            <column name="approved_at" type="TIMESTAMP"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="monitoring_items"
+                baseColumnNames="hudud_tuzilma_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_monitoring_org"/>
+
+        <addForeignKeyConstraint
+                baseTableName="monitoring_items"
+                baseColumnNames="masul_org_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_monitoring_masul_org"/>
+
+        <addForeignKeyConstraint
+                baseTableName="monitoring_items"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_monitoring_creator"/>
+
+        <addForeignKeyConstraint
+                baseTableName="monitoring_responses"
+                baseColumnNames="monitoring_id"
+                referencedTableName="monitoring_items"
+                referencedColumnNames="id"
+                constraintName="fk_response_monitoring"/>
+
+        <addForeignKeyConstraint
+                baseTableName="monitoring_responses"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_response_creator"/>
+
+        <createIndex tableName="monitoring_items" indexName="idx_monitoring_status">
+            <column name="status"/>
+        </createIndex>
+
+        <createIndex tableName="monitoring_items" indexName="idx_monitoring_deadline">
+            <column name="deadline"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

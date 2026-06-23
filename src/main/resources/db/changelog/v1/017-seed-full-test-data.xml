@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- ══════════════════════════════════════════════════
+         ORGANIZATIONS — real Uzbek Ministry of Justice structure
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="017-seed-organizations" author="adliya">
+
+        <!-- Markaziy apparat -->
+        <insert tableName="organizations">
+            <column name="nomi" value="O'zbekiston Respublikasi Adliya vazirligi (Markaziy apparat)"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+        </insert>
+
+        <!-- Tarkibiy bo'limlar -->
+        <insert tableName="organizations">
+            <column name="nomi" value="Axborot xizmati va jamoatchilik bilan aloqalar boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Normativ-huquqiy hujjatlar boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Fuqarolik holati aktlarini davlat ro'yxatidan o'tkazish boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Davlat xizmatlari ko'rsatish boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Huquqiy targ'ibot va tushuntirish ishlari boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Kadrlar va inson resurslari boshqarmasi"/>
+            <column name="turi" value="MARKAZIY_APPARAT"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="yuqori_tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+        </insert>
+
+        <!-- Hududiy boshqarmalar -->
+        <insert tableName="organizations">
+            <column name="nomi" value="Toshkent shahar Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Toshkent shahar"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Toshkent viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Toshkent viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Samarqand viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Samarqand viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Farg'ona viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Farg'ona viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Andijon viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Andijon viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Namangan viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Namangan viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Buxoro viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Buxoro viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Qashqadaryo viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Qashqadaryo viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Surxondaryo viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Surxondaryo viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Navoiy viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Navoiy viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Xorazm viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Xorazm viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Qoraqalpog'iston Respublikasi Adliya vazirligi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Qoraqalpog'iston Respublikasi"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Jizzax viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Jizzax viloyati"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Sirdaryo viloyati Adliya boshqarmasi"/>
+            <column name="turi" value="HUDUDIY"/>
+            <column name="hudud" value="Sirdaryo viloyati"/>
+        </insert>
+
+        <!-- Muassasalar -->
+        <insert tableName="organizations">
+            <column name="nomi" value="O'zbekiston Respublikasi Yuridik axborot milliy markazi"/>
+            <column name="turi" value="MUASSASA"/>
+            <column name="hudud" value="Toshkent shahar"/>
+        </insert>
+        <insert tableName="organizations">
+            <column name="nomi" value="Huquqiy ta'lim markazi"/>
+            <column name="turi" value="MUASSASA"/>
+            <column name="hudud" value="Toshkent shahar"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         USERS — real-looking Uzbek names
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="018-seed-users" author="adliya">
+
+        <!-- Super Admin -->
+        <insert tableName="users">
+            <column name="fish" value="Toshmatov Aziz Hamidovich"/>
+            <column name="lavozim" value="Tizim administratori"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='SUPER_ADMIN')"/>
+            <column name="email" value="admin@adliya.uz"/>
+            <!-- password: Admin@12345 -->
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001001"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <!-- Rahbariyat -->
+        <insert tableName="users">
+            <column name="fish" value="Musayev Sherzod Bahromovich"/>
+            <column name="lavozim" value="Adliya vaziri"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='RAHBARIYAT')"/>
+            <column name="email" value="vazir@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001002"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Qodirov Ulugbek Ravshаnovich"/>
+            <column name="lavozim" value="Adliya vaziri o'rinbosari"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Markaziy apparat%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='RAHBARIYAT')"/>
+            <column name="email" value="vazir.orinbosar@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001003"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <!-- Axborot xizmati admins -->
+        <insert tableName="users">
+            <column name="fish" value="Nazarova Mohira Aliyevna"/>
+            <column name="lavozim" value="Axborot xizmati boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Axborot xizmati%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='AXBOROT_XIZMATI_ADMIN')"/>
+            <column name="email" value="axborot.boshlig@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001010"/>
+            <column name="telegram_username" value="mohira_nazarova"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Rahimov Jasur Sobirovich"/>
+            <column name="lavozim" value="Axborot xizmati mutaxassisi"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Axborot xizmati%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='AXBOROT_XIZMATI_ADMIN')"/>
+            <column name="email" value="jasur.rahimov@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001011"/>
+            <column name="telegram_username" value="jasur_ax"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <!-- Tuzilma rahbarlari -->
+        <insert tableName="users">
+            <column name="fish" value="Holmatov Behruz Akbarovich"/>
+            <column name="lavozim" value="NHH boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='TUZILMA_RAHBARI')"/>
+            <column name="email" value="nhh.boshliq@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001020"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Yusupova Nilufar Bekmurodovna"/>
+            <column name="lavozim" value="FHDY boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='TUZILMA_RAHBARI')"/>
+            <column name="email" value="fhdy.boshliq@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001021"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Mirzayev Akbar Ismoilovich"/>
+            <column name="lavozim" value="Davlat xizmatlari boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Davlat xizmatlari%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='TUZILMA_RAHBARI')"/>
+            <column name="email" value="davxizmat.boshliq@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001022"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <!-- PR menejerlar -->
+        <insert tableName="users">
+            <column name="fish" value="Xoliqova Zulfiya Mansurovna"/>
+            <column name="lavozim" value="PR menejer — NHH boshqarmasi"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='PR_MENEJER')"/>
+            <column name="email" value="nhh.pr@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001030"/>
+            <column name="telegram_username" value="zulfiya_pr"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Ergashev Dilshod Nurullayevich"/>
+            <column name="lavozim" value="PR menejer — FHDY boshqarmasi"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='PR_MENEJER')"/>
+            <column name="email" value="fhdy.pr@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001031"/>
+            <column name="telegram_username" value="dilshod_pr"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Sobirov Asilbek Farhodovich"/>
+            <column name="lavozim" value="PR menejer — Huquqiy targ'ibot"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Huquqiy targ''ibot%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='PR_MENEJER')"/>
+            <column name="email" value="targib.pr@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001032"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <!-- Hududiy adminlar -->
+        <insert tableName="users">
+            <column name="fish" value="Tursunov Sanjar Xolmatovich"/>
+            <column name="lavozim" value="Toshkent shahar adliya boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Toshkent shahar Adliya%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='HUDUDIY_ADMIN')"/>
+            <column name="email" value="toshkent.shahar@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998712001040"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Karimova Dilorom Shamsiyevna"/>
+            <column name="lavozim" value="Samarqand viloyati adliya boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Samarqand%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='HUDUDIY_ADMIN')"/>
+            <column name="email" value="samarqand@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998662001001"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="fish" value="Abdullayev Ulmas Yusupovich"/>
+            <column name="lavozim" value="Farg'ona viloyati adliya boshqarmasi boshlig'i"/>
+            <column name="tashkilot_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Farg''ona%' LIMIT 1)"/>
+            <column name="rol_id" valueComputed="(SELECT id FROM roles WHERE role_name='HUDUDIY_ADMIN')"/>
+            <column name="email" value="fargona@adliya.uz"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"/>
+            <column name="telefon" value="+998732001001"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         EXPERT PROFILES
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="019-seed-experts" author="adliya">
+        <insert tableName="expert_profiles">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='nhh.boshliq@adliya.uz')"/>
+            <column name="yonalishlar" value='["NHH","davlat_xizmatlari","huquq"]'/>
+            <column name="til_bilish" value='{"uzbek":"YUQORI","rus":"YUQORI","ingliz":"ORTA"}'/>
+            <column name="tajriba" value='["TV","RADIO","BRIFING","INTERVYU"]'/>
+            <column name="reyting" valueNumeric="87.5"/>
+            <column name="status" value="FAOL"/>
+        </insert>
+        <insert tableName="expert_profiles">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='fhdy.boshliq@adliya.uz')"/>
+            <column name="yonalishlar" value='["FHDY","nikoh_talaq","fuqarolik"]'/>
+            <column name="til_bilish" value='{"uzbek":"YUQORI","rus":"ORTA"}'/>
+            <column name="tajriba" value='["TV","INTERVYU","MATBUOT_ANJUMANI"]'/>
+            <column name="reyting" valueNumeric="72.0"/>
+            <column name="status" value="FAOL"/>
+        </insert>
+        <insert tableName="expert_profiles">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='davxizmat.boshliq@adliya.uz')"/>
+            <column name="yonalishlar" value='["davlat_xizmatlari","raqamlashtiruv","ochiqlik"]'/>
+            <column name="til_bilish" value='{"uzbek":"YUQORI","rus":"YUQORI","ingliz":"YUQORI"}'/>
+            <column name="tajriba" value='["TV","RADIO","BRIFING","INTERVYU","FORUM"]'/>
+            <column name="reyting" valueNumeric="95.0"/>
+            <column name="status" value="FAOL"/>
+        </insert>
+        <insert tableName="expert_profiles">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+            <column name="yonalishlar" value='["media","PR","kommunikatsiya","axborot_siyosati"]'/>
+            <column name="til_bilish" value='{"uzbek":"YUQORI","rus":"YUQORI","ingliz":"ORTA"}'/>
+            <column name="tajriba" value='["TV","RADIO","BRIFING","MATBUOT_ANJUMANI","INTERVYU"]'/>
+            <column name="reyting" valueNumeric="91.5"/>
+            <column name="status" value="FAOL"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         MEDIA OUTLETS (OAV)
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="020-seed-media-outlets" author="adliya">
+        <insert tableName="media_outlets"><column name="nomi" value="O'zbekiston Milliy teleradiokompaniyasi (MTRK)"/><column name="turi" value="TV"/><column name="aloqa" value="+998712331234"/><column name="email" value="info@mtrk.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Yoshlar telekanali"/><column name="turi" value="TV"/><column name="aloqa" value="+998712441234"/><column name="email" value="info@yoshlar.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="O'zbekiston 24 telekanali"/><column name="turi" value="TV"/><column name="aloqa" value="+998712551234"/><column name="email" value="news@uzbekistan24.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Dunyo bo'ylab telekanali"/><column name="turi" value="TV"/><column name="aloqa" value="+998712661234"/><column name="email" value="info@dunyo.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="O'zbekiston Milliy radiosi"/><column name="turi" value="RADIO"/><column name="aloqa" value="+998712771234"/><column name="email" value="radio@uzmr.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Kun.uz"/><column name="turi" value="INTERNET_NASHRI"/><column name="aloqa" value="+998712881234"/><column name="email" value="news@kun.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Gazeta.uz"/><column name="turi" value="INTERNET_NASHRI"/><column name="aloqa" value="+998712991234"/><column name="email" value="editor@gazeta.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Daryo.uz"/><column name="turi" value="INTERNET_NASHRI"/><column name="aloqa" value="+998711001234"/><column name="email" value="news@daryo.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Xalq so'zi gazetasi"/><column name="turi" value="GAZETA"/><column name="aloqa" value="+998711111234"/><column name="email" value="xalqsozi@uzmedia.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Adolat gazetasi"/><column name="turi" value="GAZETA"/><column name="aloqa" value="+998711221234"/><column name="email" value="adolat@adliya.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Huquq va burch jurnali"/><column name="turi" value="JURNAL"/><column name="aloqa" value="+998711331234"/><column name="email" value="journal@adliya.uz"/></insert>
+        <insert tableName="media_outlets"><column name="nomi" value="Sherzod Qodirov bloger (YouTube)"/><column name="turi" value="BLOGER"/><column name="aloqa" value="+998901234567"/><column name="email" value="sherzod@gmail.com"/></insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         MEDIA REQUESTS (OAV So'rovlari)
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="021-seed-media-requests" author="adliya">
+        <insert tableName="media_requests">
+            <column name="oav_id" valueComputed="(SELECT id FROM media_outlets WHERE nomi LIKE '%MTRK%')"/>
+            <column name="mavzu" value="Yangi NHH qonuni: fuqarolar uchun nima o'zgaradi?"/>
+            <column name="yonalish" value="NHH"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '2 days'"/>
+            <column name="joy" value="O'zbekiston Milliy teleradiokompaniyasi studiyasi, Toshkent"/>
+            <column name="kerakli_mutaxassislar_soni" valueNumeric="1"/>
+            <column name="tarkibiy_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="taymer_muddat_minut" valueNumeric="180"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '3 hours'"/>
+            <column name="izoh" value="Jonli efir. Muddatga qat'iy amal qilinsin. Rasmiy kiyim talab qilinadi."/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+        </insert>
+        <insert tableName="media_requests">
+            <column name="oav_id" valueComputed="(SELECT id FROM media_outlets WHERE nomi LIKE '%Kun.uz%')"/>
+            <column name="mavzu" value="FHDY xizmatlarini onlayn olish: bosqichma-bosqich yo'riqnoma"/>
+            <column name="yonalish" value="FHDY"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '1 day'"/>
+            <column name="joy" value="Adliya vazirligi, matbuot xonasi"/>
+            <column name="kerakli_mutaxassislar_soni" valueNumeric="1"/>
+            <column name="tarkibiy_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="taymer_muddat_minut" valueNumeric="120"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '2 hours'"/>
+            <column name="izoh" value="Intervyu. Savollar oldindan yuborilib qo'yilsin."/>
+            <column name="status" value="EKSPERT_BIRIKTIRILDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+        </insert>
+        <insert tableName="media_requests">
+            <column name="oav_id" valueComputed="(SELECT id FROM media_outlets WHERE nomi LIKE '%Yoshlar%')"/>
+            <column name="mavzu" value="Raqamli adliya: yoshlar uchun yangi imkoniyatlar"/>
+            <column name="yonalish" value="davlat_xizmatlari"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '3 days'"/>
+            <column name="joy" value="Yoshlar telekanali studiyasi"/>
+            <column name="kerakli_mutaxassislar_soni" valueNumeric="2"/>
+            <column name="tarkibiy_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Davlat xizmatlari%' LIMIT 1)"/>
+            <column name="taymer_muddat_minut" valueNumeric="240"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '1 day'"/>
+            <column name="izoh" value="Teleekran. Ikki mutaxassis talab qilinadi."/>
+            <column name="status" value="YUBORILDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+        </insert>
+        <insert tableName="media_requests">
+            <column name="oav_id" valueComputed="(SELECT id FROM media_outlets WHERE nomi LIKE '%Xalq so''zi%')"/>
+            <column name="mavzu" value="Huquqiy savodxonlik: fuqarolarning huquqlari va majburiyatlari"/>
+            <column name="yonalish" value="huquqiy_targib"/>
+            <column name="sana" valueComputed="NOW() - INTERVAL '1 day'"/>
+            <column name="joy" value="Adliya vazirligi, 305-xona"/>
+            <column name="kerakli_mutaxassislar_soni" valueNumeric="1"/>
+            <column name="tarkibiy_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Huquqiy targ''ibot%' LIMIT 1)"/>
+            <column name="taymer_muddat_minut" valueNumeric="60"/>
+            <column name="deadline" valueComputed="NOW() - INTERVAL '2 hours'"/>
+            <column name="izoh" value="Maqola uchun intervyu. Telefon orqali ham mumkin."/>
+            <column name="status" value="YAKUNLANDI"/>
+            <column name="yakuniy_havola" value="https://xalqsozi.uz/2026/06/adliya-huquq"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+        </insert>
+        <insert tableName="media_requests">
+            <column name="oav_id" valueComputed="(SELECT id FROM media_outlets WHERE nomi LIKE '%Daryo.uz%')"/>
+            <column name="mavzu" value="Notariat xizmatlari islohoti haqida"/>
+            <column name="yonalish" value="notariat"/>
+            <column name="sana" valueComputed="NOW() - INTERVAL '5 hours'"/>
+            <column name="joy" value="Onlayn (Zoom)"/>
+            <column name="kerakli_mutaxassislar_soni" valueNumeric="1"/>
+            <column name="tarkibiy_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="taymer_muddat_minut" valueNumeric="30"/>
+            <column name="deadline" valueComputed="NOW() - INTERVAL '4 hours'"/>
+            <column name="status" value="KECHIKDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         EVENTS (Tadbirlar)
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="022-seed-events" author="adliya">
+        <insert tableName="events">
+            <column name="nomi" value="Adliya vazirligi 2026-yil II chorak natijalariga bag'ishlangan matbuot anjumani"/>
+            <column name="turi" value="MATBUOT_ANJUMANI"/>
+            <column name="tashkilotchi_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Axborot xizmati%' LIMIT 1)"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '5 days'"/>
+            <column name="joy" value="Adliya vazirligi, Matbuot markazi, 1-qavat"/>
+            <column name="ishtirokchilar" value="Barcha akkreditatsiya qilingan OAV vakillari, vazirlik rahbariyati"/>
+            <column name="press_reliz" value="Matbuot anjumani dasturi ilova qilinadi."/>
+            <column name="foto_kerak" valueBoolean="true"/>
+            <column name="video_kerak" valueBoolean="true"/>
+            <column name="oav_taklif" valueBoolean="true"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+            <column name="izoh" value="OAVga 3 kun oldin bildirishnoma yuborilsin"/>
+            <column name="status" value="QABUL_QILINDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='nhh.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="events">
+            <column name="nomi" value="'Huquqiy savodxonlik' ko'chma seminari — Toshkent shahar"/>
+            <column name="turi" value="SEMINAR"/>
+            <column name="tashkilotchi_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Toshkent shahar Adliya%' LIMIT 1)"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '2 days'"/>
+            <column name="joy" value="Toshkent shahar Adliya boshqarmasi, konferents-zal"/>
+            <column name="foto_kerak" valueBoolean="true"/>
+            <column name="video_kerak" valueBoolean="false"/>
+            <column name="oav_taklif" valueBoolean="true"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='toshkent.shahar@adliya.uz')"/>
+            <column name="status" value="YUBORILDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='toshkent.shahar@adliya.uz')"/>
+        </insert>
+        <insert tableName="events">
+            <column name="nomi" value="Fuqarolar bilan ochiq muloqot — Samarqand viloyati"/>
+            <column name="turi" value="OCHIQ_MULOQOT"/>
+            <column name="tashkilotchi_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Samarqand%' LIMIT 1)"/>
+            <column name="hudud" value="Samarqand viloyati"/>
+            <column name="sana" valueComputed="NOW() + INTERVAL '7 days'"/>
+            <column name="joy" value="Samarqand viloyati Adliya boshqarmasi, katta zal"/>
+            <column name="foto_kerak" valueBoolean="true"/>
+            <column name="video_kerak" valueBoolean="true"/>
+            <column name="oav_taklif" valueBoolean="true"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='samarqand@adliya.uz')"/>
+            <column name="status" value="QORALAMA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='samarqand@adliya.uz')"/>
+        </insert>
+        <insert tableName="events">
+            <column name="nomi" value="FHDY xizmatlarini onlayn olish bo'yicha brifing"/>
+            <column name="turi" value="BRIFING"/>
+            <column name="tashkilotchi_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="hudud" value="Toshkent shahar"/>
+            <column name="sana" valueComputed="NOW() - INTERVAL '2 days'"/>
+            <column name="joy" value="Adliya vazirligi, Matbuot markazi"/>
+            <column name="foto_kerak" valueBoolean="true"/>
+            <column name="video_kerak" valueBoolean="true"/>
+            <column name="oav_taklif" valueBoolean="true"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='fhdy.boshliq@adliya.uz')"/>
+            <column name="status" value="YAKUNLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         COVERAGE MATERIALS
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="023-seed-coverage-materials" author="adliya">
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="Adliya vazirligi FHDY islohoti haqida MTRK syujeti"/>
+            <column name="material_turi" value="FAOLIYATNI_YORITISH"/>
+            <column name="platforma" value="TV"/>
+            <column name="havola" value="https://mtrk.uz/news/2026/06/fhdy-islohot"/>
+            <column name="sana" valueComputed="CURRENT_DATE - INTERVAL '1 day'"/>
+            <column name="hudud_tuzilma_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="mavzu" value="FHDY"/>
+            <column name="korishlar_soni" valueNumeric="125000"/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="Huquqiy savodxonlik: 10 muhim savol va javob — Kun.uz maqolasi"/>
+            <column name="material_turi" value="HUQUQIY_TARG''IBOT"/>
+            <column name="platforma" value="INTERNET_NASHRI"/>
+            <column name="havola" value="https://kun.uz/uz/news/2026/06/20/huquqiy-savodxonlik"/>
+            <column name="sana" valueComputed="CURRENT_DATE - INTERVAL '3 days'"/>
+            <column name="mavzu" value="huquqiy_targib"/>
+            <column name="korishlar_soni" valueNumeric="87500"/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='targib.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="Adliya vazirligi Telegram kanalida yangi NHH haqida post"/>
+            <column name="material_turi" value="FAOLIYATNI_YORITISH"/>
+            <column name="platforma" value="TELEGRAM"/>
+            <column name="havola" value="https://t.me/adliyavazirlik/1842"/>
+            <column name="sana" valueComputed="CURRENT_DATE"/>
+            <column name="mavzu" value="NHH"/>
+            <column name="korishlar_soni" valueNumeric="45300"/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='nhh.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="Adliya vazirligi Instagram sahifasida Reels video"/>
+            <column name="material_turi" value="FAOLIYATNI_YORITISH"/>
+            <column name="platforma" value="INSTAGRAM"/>
+            <column name="havola" value="https://instagram.com/p/adliya_reels_2026"/>
+            <column name="sana" valueComputed="CURRENT_DATE - INTERVAL '2 days'"/>
+            <column name="mavzu" value="davlat_xizmatlari"/>
+            <column name="korishlar_soni" valueNumeric="32100"/>
+            <column name="status" value="TASDIQLASHDA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="YouTube: 'Adliya — har bir fuqaro uchun' ro'yxat video"/>
+            <column name="material_turi" value="FAOLIYATNI_YORITISH"/>
+            <column name="platforma" value="YOUTUBE"/>
+            <column name="havola" value="https://youtube.com/watch?v=adliya_2026_demo"/>
+            <column name="sana" valueComputed="CURRENT_DATE - INTERVAL '4 days'"/>
+            <column name="mavzu" value="imij"/>
+            <column name="korishlar_soni" valueNumeric="18900"/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='targib.pr@adliya.uz')"/>
+        </insert>
+        <insert tableName="coverage_materials">
+            <column name="nomi" value="Farg'ona viloyati: sayyor qabul natijalari haqida Telegram post"/>
+            <column name="material_turi" value="FAOLIYATNI_YORITISH"/>
+            <column name="platforma" value="TELEGRAM"/>
+            <column name="havola" value="https://t.me/fargona_adliya/421"/>
+            <column name="sana" valueComputed="CURRENT_DATE - INTERVAL '1 day'"/>
+            <column name="mavzu" value="sayyor_qabul"/>
+            <column name="korishlar_soni" valueNumeric="8700"/>
+            <column name="status" value="TASDIQLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='fargona@adliya.uz')"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         MONITORING — Tanqidiy materiallar
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="024-seed-monitoring" author="adliya">
+        <insert tableName="monitoring_items">
+            <column name="turi" value="TANQIDIY"/>
+            <column name="link" value="https://t.me/muammolar_kanali/3421"/>
+            <column name="platforma" value="TELEGRAM"/>
+            <column name="muallif_manba" value="@muammolar_kanali (47K obunachilar)"/>
+            <column name="mavzu" value="Toshkent shahar FHDY idoralarida navbatlar juda uzun — fuqarolar shikoyat qilmoqda"/>
+            <column name="daraja" value="YUQORI"/>
+            <column name="masul_org_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Fuqarolik holati%' LIMIT 1)"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '4 hours'"/>
+            <column name="status" value="KO_RIB_CHIQILMOQDA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+        </insert>
+        <insert tableName="monitoring_items">
+            <column name="turi" value="TANQIDIY"/>
+            <column name="link" value="https://gazeta.uz/2026/06/adliya-shikoyat"/>
+            <column name="platforma" value="OAV"/>
+            <column name="muallif_manba" value="Gazeta.uz"/>
+            <column name="mavzu" value="Notarius xizmatlarida korrupsiya holatlari qayd etilmoqda — maqola"/>
+            <column name="daraja" value="REZONANSLI"/>
+            <column name="masul_org_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '2 hours'"/>
+            <column name="status" value="YANGI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+        </insert>
+        <insert tableName="monitoring_items">
+            <column name="turi" value="TANQIDIY"/>
+            <column name="link" value="https://www.facebook.com/groups/uzfuqarolar/posts/8812"/>
+            <column name="platforma" value="FACEBOOK"/>
+            <column name="muallif_manba" value="Facebook guruh: O'zbekiston fuqarolari (125K a'zo)"/>
+            <column name="mavzu" value="Mulk huquqini ro'yxatdan o'tkazishda qiyinchiliklar — fuqarolarning fikrlari"/>
+            <column name="daraja" value="ORTA"/>
+            <column name="masul_org_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Davlat xizmatlari%' LIMIT 1)"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '24 hours'"/>
+            <column name="status" value="YANGI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+        </insert>
+        <insert tableName="monitoring_items">
+            <column name="turi" value="TANQIDIY"/>
+            <column name="link" value="https://t.me/samarqand_yangiliklari/2210"/>
+            <column name="platforma" value="TELEGRAM"/>
+            <column name="muallif_manba" value="@samarqand_yangiliklari"/>
+            <column name="mavzu" value="Samarqand viloyatida huquqiy yordam olish qiyin — ko'p shikoyatlar"/>
+            <column name="daraja" value="PAST"/>
+            <column name="masul_org_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Samarqand%' LIMIT 1)"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '48 hours'"/>
+            <column name="status" value="YAKUNLANDI"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+        </insert>
+        <!-- NHH -->
+        <insert tableName="monitoring_items">
+            <column name="turi" value="NHH"/>
+            <column name="platforma" value="OAV"/>
+            <column name="muallif_manba" value="Qonunchilik.uz (rasmiy manba)"/>
+            <column name="mavzu" value="Fuqarolik kodeksiga 47-modda bo'yicha o'zgartirishlar kiritildi (2026-yil 15-iyun)"/>
+            <column name="daraja" value="YUQORI"/>
+            <column name="masul_org_id" valueComputed="(SELECT id FROM organizations WHERE nomi LIKE '%Normativ%' LIMIT 1)"/>
+            <column name="deadline" valueComputed="NOW() + INTERVAL '3 days'"/>
+            <column name="status" value="KO_RIB_CHIQILMOQDA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='nhh.boshliq@adliya.uz')"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         CONTENT CALENDAR
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="025-seed-content-calendar" author="adliya">
+        <insert tableName="content_calendar">
+            <column name="kontent_nomi" value="Yangi NHH haqida infografika — Telegram va Instagram"/>
+            <column name="format" value="INFOGRAFIKA"/>
+            <column name="platforma" value="TELEGRAM"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='nhh.pr@adliya.uz')"/>
+            <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '1 day'"/>
+            <column name="status" value="TAYYORLANMOQDA"/>
+        </insert>
+        <insert tableName="content_calendar">
+            <column name="kontent_nomi" value="FHDY: nikoh va talaq hujjatlarini onlayn rasmiylashtirishning 5 qadami — video"/>
+            <column name="format" value="VIDEO"/>
+            <column name="platforma" value="YOUTUBE"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
+            <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '3 days'"/>
+            <column name="status" value="REJADA"/>
+        </insert>
+        <insert tableName="content_calendar">
+            <column name="kontent_nomi" value="Huquqiy savodxonlik haftaligi: kunlik postlar seriyasi (7 kun)"/>
+            <column name="format" value="POST"/>
+            <column name="platforma" value="INSTAGRAM"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='targib.pr@adliya.uz')"/>
+            <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '5 days'"/>
+            <column name="status" value="REJADA"/>
+        </insert>
+        <insert tableName="content_calendar">
+            <column name="kontent_nomi" value="Matbuot anjumani: oldindan press-reliz tarqatish"/>
+            <column name="format" value="PRESS_RELIZ"/>
+            <column name="platforma" value="OAV"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+            <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '3 days'"/>
+            <column name="status" value="TAYYORLANMOQDA"/>
+        </insert>
+        <insert tableName="content_calendar">
+            <column name="kontent_nomi" value="Adliya vazirligi YouTube kanalida oy yakunlari — Reels"/>
+            <column name="format" value="REELS"/>
+            <column name="platforma" value="YOUTUBE"/>
+            <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+            <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '7 days'"/>
+            <column name="elon_vaqti" valueComputed="NOW() + INTERVAL '7 days 10 hours'"/>
+            <column name="status" value="REJADA"/>
+        </insert>
+    </changeSet>
+
+    <!-- ══════════════════════════════════════════════════
+         NOTIFICATIONS
+    ══════════════════════════════════════════════════ -->
+    <changeSet id="026-seed-notifications" author="adliya">
+        <insert tableName="notifications">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='nhh.boshliq@adliya.uz')"/>
+            <column name="title" value="Yangi OAV so'rovi keldi"/>
+            <column name="message" value="MTRK telekanali uchun mutaxassis talab qilinmoqda. Mavzu: Yangi NHH qonuni. Muddat: 3 soat."/>
+            <column name="notif_type" value="YANGI_OAV_SOROVI"/>
+            <column name="related_module" value="media_requests"/>
+            <column name="is_read" valueBoolean="false"/>
+        </insert>
+        <insert tableName="notifications">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
+            <column name="title" value="Tanqidiy material: REZONANSLI"/>
+            <column name="message" value="Gazeta.uz: Notarius xizmatlarida korrupsiya holatlari. Zudlik bilan ko'rib chiqish talab etiladi!"/>
+            <column name="notif_type" value="TANQIDIY_MATERIAL"/>
+            <column name="related_module" value="monitoring"/>
+            <column name="is_read" valueBoolean="false"/>
+        </insert>
+        <insert tableName="notifications">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
+            <column name="title" value="Material tasdiqlandi"/>
+            <column name="message" value="'FHDY islohoti haqida MTRK syujeti' materiali Axborot xizmati tomonidan tasdiqlandi."/>
+            <column name="notif_type" value="MATERIAL_TASDIQLASHDA"/>
+            <column name="related_module" value="coverage_materials"/>
+            <column name="is_read" valueBoolean="true"/>
+        </insert>
+        <insert tableName="notifications">
+            <column name="user_id" valueComputed="(SELECT id FROM users WHERE email='jasur.rahimov@adliya.uz')"/>
+            <column name="title" value="So'rov muddati o'tdi"/>
+            <column name="message" value="Daryo.uz uchun notariat islohoti bo'yicha so'rov muddati o'tib ketdi. Status: KECHIKDI."/>
+            <column name="notif_type" value="TOPSHIRIQ_KECHIKDI"/>
+            <column name="related_module" value="media_requests"/>
+            <column name="is_read" valueBoolean="false"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

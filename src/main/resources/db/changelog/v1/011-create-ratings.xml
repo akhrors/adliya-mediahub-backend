@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="011-create-ratings" author="adliya">
+
+        <!-- Configurable scoring rules -->
+        <createTable tableName="rating_rules">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="korsatkich" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <!-- MATBUOT_ANJUMANI, BRIFING, OCHIQ_MULOQOT, TV_CHIQISH, RADIO_CHIQISH,
+                 ELEKTRON_OAV, TELEGRAM_POST, INSTAGRAM_POST, YOUTUBE_VIDEO,
+                 TANQIDIY_MUDDATIDA_JAVOB, TANQIDIY_KECH_JAVOB, SIFATSIZ_MATERIAL -->
+            <column name="ball" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+            <column name="updated_by" type="BIGINT"/>
+        </createTable>
+
+        <!-- Computed rating records per period -->
+        <createTable tableName="ratings">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="davr_turi" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+                <!-- KUNLIK, HAFTALIK, OYLIK, CHORAKLIK, YILLIK -->
+            </column>
+            <column name="davr_boshi" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="davr_oxiri" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="obyekt_turi" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+                <!-- HUDUD, MUASSASA, TARKIBIY_TUZILMA, PR_MENEJER, EKSPERT -->
+            </column>
+            <column name="obyekt_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ball" type="DECIMAL(10,2)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hisoblash_sanasi" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Rating detail breakdown per action -->
+        <createTable tableName="rating_transactions">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="obyekt_turi" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="obyekt_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rule_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ball" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="related_module" type="VARCHAR(50)"/>
+            <column name="related_id" type="BIGINT"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="rating_transactions"
+                baseColumnNames="rule_id"
+                referencedTableName="rating_rules"
+                referencedColumnNames="id"
+                constraintName="fk_rating_tx_rule"/>
+
+        <createIndex tableName="ratings" indexName="idx_ratings_obyekt">
+            <column name="obyekt_turi"/>
+            <column name="obyekt_id"/>
+        </createIndex>
+
+        <createIndex tableName="ratings" indexName="idx_ratings_davr">
+            <column name="davr_turi"/>
+            <column name="davr_boshi"/>
+            <column name="davr_oxiri"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Seed default rating rules from TZ -->
+    <changeSet id="011-seed-rating-rules" author="adliya">
+        <insert tableName="rating_rules"><column name="korsatkich" value="MATBUOT_ANJUMANI"/><column name="ball" valueNumeric="20"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="BRIFING"/><column name="ball" valueNumeric="15"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="OCHIQ_MULOQOT"/><column name="ball" valueNumeric="10"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="TV_CHIQISH"/><column name="ball" valueNumeric="15"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="RADIO_CHIQISH"/><column name="ball" valueNumeric="10"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="ELEKTRON_OAV"/><column name="ball" valueNumeric="8"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="TELEGRAM_POST"/><column name="ball" valueNumeric="2"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="INSTAGRAM_POST"/><column name="ball" valueNumeric="3"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="YOUTUBE_VIDEO"/><column name="ball" valueNumeric="5"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="TANQIDIY_MUDDATIDA_JAVOB"/><column name="ball" valueNumeric="10"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="TANQIDIY_KECH_JAVOB"/><column name="ball" valueNumeric="-5"/></insert>
+        <insert tableName="rating_rules"><column name="korsatkich" value="SIFATSIZ_MATERIAL"/><column name="ball" valueNumeric="0"/></insert>
+    </changeSet>
+
+</databaseChangeLog>

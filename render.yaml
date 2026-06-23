@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: adliya-mediahub-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/v1/auth/health
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: adliya-mediahub-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: adliya-mediahub-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: adliya-mediahub-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: CORS_ORIGINS
+        value: https://adliya-mediahub.vercel.app
+
+databases:
+  - name: adliya-mediahub-db
+    plan: free
+    databaseName: adliya_mediahub
+    user: mediahub

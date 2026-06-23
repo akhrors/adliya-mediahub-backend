@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="006-create-media-requests" author="adliya">
+
+        <!-- Main media request (OAV so'rovi) -->
+        <createTable tableName="media_requests">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="oav_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mavzu" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="yonalish" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sana" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="joy" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kerakli_mutaxassislar_soni" type="INTEGER" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tarkibiy_tuzilma_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taymer_muddat_minut" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deadline" type="TIMESTAMP"/>
+            <column name="izoh" type="TEXT"/>
+            <column name="status" type="VARCHAR(30)" defaultValue="YANGI">
+                <constraints nullable="false"/>
+                <!-- YANGI, YUBORILDI, KO'RIB_CHIQILMOQDA, EKSPERT_BIRIKTIRILDI,
+                     TASDIQLANDI, RAD_ETILDI, O'TKAZILDI, YAKUNLANDI, KECHIKDI -->
+            </column>
+            <column name="yakuniy_havola" type="TEXT"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Attached files for media requests -->
+        <createTable tableName="media_request_files">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_url" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_size" type="BIGINT"/>
+            <column name="uploaded_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Expert assignments per request -->
+        <createTable tableName="media_request_experts">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expert_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(30)" defaultValue="TAKLIF_QILINDI">
+                <constraints nullable="false"/>
+                <!-- TAKLIF_QILINDI, TASDIQLANDI, RAD_ETILDI -->
+            </column>
+            <column name="assigned_by" type="BIGINT"/>
+            <column name="assigned_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="media_requests"
+                baseColumnNames="oav_id"
+                referencedTableName="media_outlets"
+                referencedColumnNames="id"
+                constraintName="fk_request_oav"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_requests"
+                baseColumnNames="tarkibiy_tuzilma_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_request_tuzilma"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_requests"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_request_creator"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_request_files"
+                baseColumnNames="request_id"
+                referencedTableName="media_requests"
+                referencedColumnNames="id"
+                constraintName="fk_req_file_request"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_request_experts"
+                baseColumnNames="request_id"
+                referencedTableName="media_requests"
+                referencedColumnNames="id"
+                constraintName="fk_req_expert_request"/>
+
+        <addForeignKeyConstraint
+                baseTableName="media_request_experts"
+                baseColumnNames="expert_id"
+                referencedTableName="expert_profiles"
+                referencedColumnNames="id"
+                constraintName="fk_req_expert_profile"/>
+
+        <createIndex tableName="media_requests" indexName="idx_media_requests_status">
+            <column name="status"/>
+        </createIndex>
+
+        <createIndex tableName="media_requests" indexName="idx_media_requests_deadline">
+            <column name="deadline"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

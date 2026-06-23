@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="016-seed-roles" author="adliya">
+        <insert tableName="roles">
+            <column name="role_name" value="SUPER_ADMIN"/>
+            <column name="display_name" value="Super administrator"/>
+            <column name="permissions" value="ALL"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="RAHBARIYAT"/>
+            <column name="display_name" value="Rahbariyat"/>
+            <column name="permissions" value="DASHBOARD_VIEW,RATING_VIEW,REPORT_VIEW,MONITORING_VIEW"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="AXBOROT_XIZMATI_ADMIN"/>
+            <column name="display_name" value="Axborot xizmati administratori"/>
+            <column name="permissions" value="MEDIA_REQUEST_CREATE,MATERIAL_APPROVE,MONITORING_MANAGE,REPORT_EXPORT,RATING_VIEW"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="TUZILMA_RAHBARI"/>
+            <column name="display_name" value="Tarkibiy tuzilma rahbari"/>
+            <column name="permissions" value="REQUEST_VIEW,EXPERT_ASSIGN,EVENT_CREATE,MATERIAL_CREATE,MONITORING_VIEW"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="PR_MENEJER"/>
+            <column name="display_name" value="Tarkibiy tuzilma PR menejeri"/>
+            <column name="permissions" value="EVENT_CREATE,MATERIAL_CREATE,EXPERT_UPDATE,COVERAGE_CREATE,CALENDAR_MANAGE"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="HUDUDIY_ADMIN"/>
+            <column name="display_name" value="Hududiy administrator"/>
+            <column name="permissions" value="EVENT_CREATE,MATERIAL_CREATE,MONITORING_VIEW,REPORT_OWN,SUBORDINATE_VIEW"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="MUASSASA_USER"/>
+            <column name="display_name" value="Muassasa foydalanuvchisi"/>
+            <column name="permissions" value="EVENT_CREATE,MATERIAL_CREATE,COVERAGE_CREATE"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="role_name" value="KUZATUVCHI"/>
+            <column name="display_name" value="Kuzatuvchi foydalanuvchi"/>
+            <column name="permissions" value="READ_ONLY"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="002-create-organizations" author="adliya">
+        <createTable tableName="organizations">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomi" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="turi" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+                <!-- MARKAZIY_APPARAT, HUDUDIY, MUASSASA -->
+            </column>
+            <column name="hudud" type="VARCHAR(100)"/>
+            <column name="yuqori_tashkilot_id" type="BIGINT"/>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="organizations"
+                baseColumnNames="yuqori_tashkilot_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_org_parent"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="008-create-coverage-materials" author="adliya">
+
+        <createTable tableName="coverage_materials">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomi" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="material_turi" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+                <!-- FAOLIYATNI_YORITISH, HUQUQIY_TARGʻIBOT, INTERVYU, REPORTAJ, BOSHQA -->
+            </column>
+            <column name="platforma" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+                <!-- TV, RADIO, TELEGRAM, INSTAGRAM, FACEBOOK, YOUTUBE, VEBSAYT, GAZETA, JURNAL, BOSHQA -->
+            </column>
+            <column name="havola" type="TEXT"/>
+            <column name="sana" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hudud_tuzilma_id" type="BIGINT"/>
+            <column name="mavzu" type="VARCHAR(255)"/>
+            <column name="korishlar_soni" type="BIGINT" defaultValueNumeric="0"/>
+            <column name="izoh" type="TEXT"/>
+            <column name="status" type="VARCHAR(30)" defaultValue="TASDIQLASHDA">
+                <constraints nullable="false"/>
+                <!-- TASDIQLASHDA, TASDIQLANDI, QAYTARILDI -->
+            </column>
+            <column name="tasdiqlagan_id" type="BIGINT"/>
+            <column name="tasdiqlagan_vaqt" type="TIMESTAMP"/>
+            <column name="qaytarish_sababi" type="TEXT"/>
+            <column name="created_by" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Media files attached to coverage materials -->
+        <createTable tableName="coverage_material_files">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="material_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_url" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_type" type="VARCHAR(20)"/>
+            <!-- FOTO, VIDEO, SKRINSHOT, HUJJAT -->
+            <column name="file_size" type="BIGINT"/>
+            <column name="uploaded_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="coverage_materials"
+                baseColumnNames="hudud_tuzilma_id"
+                referencedTableName="organizations"
+                referencedColumnNames="id"
+                constraintName="fk_coverage_org"/>
+
+        <addForeignKeyConstraint
+                baseTableName="coverage_materials"
+                baseColumnNames="created_by"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_coverage_creator"/>
+
+        <addForeignKeyConstraint
+                baseTableName="coverage_material_files"
+                baseColumnNames="material_id"
+                referencedTableName="coverage_materials"
+                referencedColumnNames="id"
+                constraintName="fk_coverage_file_material"/>
+
+        <createIndex tableName="coverage_materials" indexName="idx_coverage_status">
+            <column name="status"/>
+        </createIndex>
+
+        <createIndex tableName="coverage_materials" indexName="idx_coverage_platforma">
+            <column name="platforma"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
