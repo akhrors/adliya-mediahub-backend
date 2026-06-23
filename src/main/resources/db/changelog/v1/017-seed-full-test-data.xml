@@ -650,6 +650,7 @@
             <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='nhh.pr@adliya.uz')"/>
             <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '1 day'"/>
             <column name="status" value="TAYYORLANMOQDA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
         </insert>
         <insert tableName="content_calendar">
             <column name="kontent_nomi" value="FHDY: nikoh va talaq hujjatlarini onlayn rasmiylashtirishning 5 qadami — video"/>
@@ -658,6 +659,7 @@
             <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='fhdy.pr@adliya.uz')"/>
             <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '3 days'"/>
             <column name="status" value="REJADA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
         </insert>
         <insert tableName="content_calendar">
             <column name="kontent_nomi" value="Huquqiy savodxonlik haftaligi: kunlik postlar seriyasi (7 kun)"/>
@@ -666,6 +668,7 @@
             <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='targib.pr@adliya.uz')"/>
             <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '5 days'"/>
             <column name="status" value="REJADA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
         </insert>
         <insert tableName="content_calendar">
             <column name="kontent_nomi" value="Matbuot anjumani: oldindan press-reliz tarqatish"/>
@@ -674,6 +677,7 @@
             <column name="masul_id" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
             <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '3 days'"/>
             <column name="status" value="TAYYORLANMOQDA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
         </insert>
         <insert tableName="content_calendar">
             <column name="kontent_nomi" value="Adliya vazirligi YouTube kanalida oy yakunlari — Reels"/>
@@ -683,6 +687,7 @@
             <column name="muddat" valueComputed="CURRENT_DATE + INTERVAL '7 days'"/>
             <column name="elon_vaqti" valueComputed="NOW() + INTERVAL '7 days 10 hours'"/>
             <column name="status" value="REJADA"/>
+            <column name="created_by" valueComputed="(SELECT id FROM users WHERE email='axborot.boshlig@adliya.uz')"/>
         </insert>
     </changeSet>
 
